@@ -5,12 +5,12 @@
 	<ion-content class="has-header" padding="true">
 	<h5>Id</h5>
     <label class="item item-input n-p-l">
-      <input type="text" class="font-h1 input">
+      <input type="text" class="font-h1 input" ng-model="produto.id">
     </label>
     <h5>Nome</h5>
     <label class="item item-input n-p-l">
-      <input type="text" class="font-h1 input">
+      <input type="text" class="font-h1 input" ng-model="produto.nome">
     </label>
-    <button class="button button-small" ui-sref="menu">Salvar</button>
+    <button class="button button-small" ng-click="salvar(produto)">Salvar</button>
   </ion-content>
 </ion-view>
