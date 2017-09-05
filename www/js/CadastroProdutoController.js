@@ -1,13 +1,25 @@
 angular.module('starter')
-.controller("CadastroProdutoController",function($scope, $state){
+.controller("CadastroProdutoController",function($scope, $state, ProdutoService){
   
-  $scope.produto = {};
-
-  $scope.salvar = function (produto) {
-  	alert('Produto ' + produto.nome + ' salvo com sucesso');
-  	$scope.produto = {};
-  	$state.go('menu');
+  if ($state.params.produtoId) {
+  		$scope.produto = angular.copy(ProdutoService.get(
+  			$state.params.produtoId));	
+  } else {
+  	$scope.produto = {
+	    id: new Date().getTime().toString(),
+	    nome: '',
+	    preco: ''
+	};
   }
 
+  $scope.save = function() {
+  	if ($state.params.produtoId) {
+  		ProdutoService.update($scope.produto);
+  	} else {
+    	ProdutoService.create($scope.produto);
+  	}
+    $state.go('listaProduto');
+  };
+
   
-})
+});
